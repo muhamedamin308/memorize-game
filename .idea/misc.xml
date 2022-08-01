@@ -9,10 +9,13 @@
         <entry key="app/src/main/res/drawable/ic_gift.xml" value="0.103" />
         <entry key="app/src/main/res/drawable/ic_heart.xml" value="0.103" />
         <entry key="app/src/main/res/drawable/ic_lightning.xml" value="0.103" />
+        <entry key="app/src/main/res/drawable/ic_refresh.xml" value="0.103" />
         <entry key="app/src/main/res/drawable/ic_send.xml" value="0.103" />
         <entry key="app/src/main/res/drawable/ic_star.xml" value="0.103" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/dialog_board_size.xml" value="0.18" />
         <entry key="app/src/main/res/layout/memory_card.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.22" />
       </map>
     </option>
   </component>
