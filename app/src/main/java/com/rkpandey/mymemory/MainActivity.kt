@@ -2,6 +2,7 @@ package com.rkpandey.mymemory
 
 import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,11 +20,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.rkpandey.mymemory.models.BoardSize
 import com.rkpandey.mymemory.models.MemoryGame
+import com.rkpandey.mymemory.utils.EXTRA_BOARD_SIZE
 
 class MainActivity : AppCompatActivity() {
 
     companion object{
-        const val TAG = "MainActivity"
+        private const val TAG = "MainActivity"
+        private const val CREATE_REQUEST_CODE = 248
     }
 
 
@@ -67,9 +70,29 @@ class MainActivity : AppCompatActivity() {
                 showNewSizeDialog()
                 return true
             }
+            R.id.mi_custom -> {
+                showCreationDialog()
+                return true
+            }
         }
     return super.onOptionsItemSelected(item)
 }
+
+    private fun showCreationDialog() {
+        val boardSizeView = LayoutInflater.from(this).inflate(R.layout.dialog_board_size, null)
+        val radioGroupSize = boardSizeView.findViewById<RadioGroup>(R.id.radoiGroup)
+
+        showAlertDialog("Create your own memory board", boardSizeView, View.OnClickListener {
+            val desiredBoardSize = when (radioGroupSize.checkedRadioButtonId) {
+                R.id.rb_easy -> BoardSize.EASY
+                R.id.rb_medium -> BoardSize.MEDIUM
+                else -> BoardSize.HARD
+            }
+            val intent = Intent(this, CreateActivity::class.java)
+            intent.putExtra(EXTRA_BOARD_SIZE, desiredBoardSize)
+            startActivityForResult(intent,CREATE_REQUEST_CODE)
+        })
+    }
 
     private fun showNewSizeDialog() {
         val boardSizeView = LayoutInflater.from(this).inflate(R.layout.dialog_board_size, null)
